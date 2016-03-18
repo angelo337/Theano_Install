@@ -1,0 +1,38 @@
+#HOWTO install Theano en Ubuntu 14.04 LTS
+
+remove previus version
+sudo apt-get remove --purge nvidia-*
+Install
+para instalar el driver de la tarjeta installe el .deb desde la interfase grafica, no lo haga por linea de comando porque va 
+a fallar, debe reiniciar el equipo 2 veces y en la segunda es que funciona la interfase grafica. en la primera sale una pantalla 
+negra y eso es normal.para descargar use la dirección:
+
+in order to install the driver on the GPU card install .deb file on th GUI interface, please avoud using the command line 
+because is going to fail most of the times, you should reinstall 2 times, after the send reboot you have again the GUI interface, 
+in the firstone you get a black screen that is normal. to download use:
+
+https://developer.nvidia.com/cuda-downloads
+
+seleccione el .deb
+choose .deb
+pero también descargue el .run
+and download .run in order to get the full examples
+
+la razón es que va a necesitar compilar los ejemplos cuando termine para ver 
+si lee la tarjeta sino la lee ni continue, hasta que no lo resuelva. 
+the reason is that you are going to need to compile the examples at the end of the install,
+if the examples run you are good to go, if not check every step before. 
+
+sudo dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
+sudo apt-get update
+sudo apt-get install cudain case you get this error:
+Using Theano backend.
+ERROR (theano.sandbox.cuda): nvcc compiler not found on $PATH. Check your nvcc installation and try again.insert in ~/.theanorc
+[cuda]
+root = /usr/local/cuda-7.5/pip install --upgrade https://github.com/Theano/Theano/archive/master.zip
+export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-7.5/bin:$PATHto make permanent PATH you can edit this file and Add this variable
+/etc/environmentTo make it permanent, you can edit the ldconfig files. First, create a new file such as:
+sudo vi /etc/ld.so.conf.d/your_lib.confSecond, add the path in the created file
+/usr/local/cuda-7.5/lib64Finally, run ldconfig to update the cache.
+sudo ldconfig
