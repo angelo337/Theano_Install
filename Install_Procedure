@@ -25,14 +25,28 @@ if the examples run you are good to go, if not check every step before.
 
 sudo dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
 sudo apt-get update
-sudo apt-get install cudain case you get this error:
+sudo apt-get install cuda
+
+in case you get this error:
 Using Theano backend.
-ERROR (theano.sandbox.cuda): nvcc compiler not found on $PATH. Check your nvcc installation and try again.insert in ~/.theanorc
+ERROR (theano.sandbox.cuda): nvcc compiler not found on $PATH. Check your nvcc installation and try again.
+
+insert in ~/.theanorc
 [cuda]
-root = /usr/local/cuda-7.5/pip install --upgrade https://github.com/Theano/Theano/archive/master.zip
+root = /usr/local/cuda-7.5/
+
+pip install --upgrade https://github.com/Theano/Theano/archive/master.zip
 export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH
-export PATH=/usr/local/cuda-7.5/bin:$PATHto make permanent PATH you can edit this file and Add this variable
-/etc/environmentTo make it permanent, you can edit the ldconfig files. First, create a new file such as:
-sudo vi /etc/ld.so.conf.d/your_lib.confSecond, add the path in the created file
-/usr/local/cuda-7.5/lib64Finally, run ldconfig to update the cache.
+export PATH=/usr/local/cuda-7.5/bin:$PATH
+
+to make permanent PATH you can edit this file and Add this variable
+/etc/environmentTo make it permanent, you can edit the ldconfig files. 
+
+First, create a new file such as:
+sudo vi /etc/ld.so.conf.d/your_lib.conf
+
+Second, add the path in the created file
+/usr/local/cuda-7.5/lib64
+
+Finally, run ldconfig to update the cache.
 sudo ldconfig
